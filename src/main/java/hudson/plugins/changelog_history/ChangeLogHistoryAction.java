@@ -1,3 +1,26 @@
+/*
+ * The MIT License
+ *
+ * Copyright (c) 2004-2009, Sun Microsystems, Inc., Alan Harder
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package hudson.plugins.changelog_history;
 
 import hudson.model.AbstractBuild;
@@ -76,22 +99,15 @@ public class ChangeLogHistoryAction implements Action {
     /**
      * Handle requests to view changelog details.
      */
-    public void doDynamic(StaplerRequest req, StaplerResponse rsp) throws Exception {
-        String s = req.getRestOfPath();
-        int i = s.indexOf("/changes");
-        if (i < 1) {
-            rsp.sendError(StaplerResponse.SC_BAD_REQUEST);
-            return;
-        }
-        s = s.substring(1, i).replace('/', '_');
-        File f = new File(new File(build.getRootDir(), "changelog-history"), s + ".xml");
-        if (!f.isFile()) {
-            rsp.sendError(StaplerResponse.SC_NOT_FOUND);
-            return;
-        }
+    public Object getDynamic(String oldBuild, StaplerRequest req, StaplerResponse rsp)
+            throws Exception {
+        File f = new File(new File(build.getRootDir(), "changelog-history"), oldBuild + ".xml");
+        if (!f.isFile())
+            return null;
+
         ChangeLogParser parser = build.getProject().getScm().createChangeLogParser();
         req.setAttribute("changeSet", parser.parse(build, f));
-        req.setAttribute("buildNumber", s);
-        rsp.forward(this, "changes", req);
+        req.setAttribute("buildNumber", oldBuild);
+        return this;
     }
 }
