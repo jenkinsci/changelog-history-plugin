@@ -11,12 +11,6 @@
     <artifactId>changelog-history</artifactId>
     <packaging>hpi</packaging>
     <name>Change Log History</name>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <url>http://wiki.hudson-ci.org/display/HUDSON/Change+Log+History+Plugin</url>
-
-  <scm>
-    <connection>scm:svn:https://guest@svn.dev.java.net/svn/hudson/tags/changelog-history-1.0</connection>
-    <developerConnection>scm:svn:https://svn.dev.java.net/svn/hudson/tags/changelog-history-1.0</developerConnection>
-    <url>https://hudson.dev.java.net/source/browse/hudson/hudson/plugins/changelog-history/tags/changelog-history-1.0</url>
-  </scm>
 </project>
