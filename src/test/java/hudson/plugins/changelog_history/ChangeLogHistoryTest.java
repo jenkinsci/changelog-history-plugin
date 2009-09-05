@@ -68,5 +68,10 @@ public class ChangeLogHistoryTest extends HudsonTestCase {
                    + mainContent, mainContent.contains("remove file"));
         assertTrue("'trunk/test.txt' file path should be found in detail content:\n"
                    + mainContent, mainContent.contains("trunk/test.txt"));
+
+        // Verify "More change log history" link on Recent Changes page
+        page = wc.goTo("job/test-job/changes");
+        link = page.getFirstAnchorByText("More change log history");
+        assertNotNull("'More change log history' link should be present on changes page", link);
     }
 }
