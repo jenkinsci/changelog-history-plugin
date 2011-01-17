@@ -19,7 +19,7 @@
     <artifactId>changelog-history</artifactId>
     <packaging>hpi</packaging>
     <name>Change Log History</name>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <url>http://wiki.hudson-ci.org/display/HUDSON/Change+Log+History+Plugin</url>
 
     <developers>
@@ -29,4 +29,10 @@
         <email>mindless@dev.java.net</email>
       </developer>
     </developers>
+
+  <scm>
+    <connection>scm:svn:https://guest@svn.java.net/svn/hudson~svn/tags/changelog-history-1.2</connection>
+    <developerConnection>scm:svn:https://svn.java.net/svn/hudson~svn/tags/changelog-history-1.2</developerConnection>
+    <url>http://java.net/projects/hudson/sources/svn/show/tags/changelog-history-1.2</url>
+  </scm>
 </project>
