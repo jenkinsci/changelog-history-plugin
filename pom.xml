@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jvnet.hudson.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.320</version>
+        <version>1.357</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -12,7 +12,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>subversion</artifactId>
-            <version>1.4</version>
+            <version>(1.11,]</version>
         </dependency>
     </dependencies>
 
@@ -26,7 +26,7 @@
       <developer>
         <id>mindless</id>
         <name>Alan Harder</name>
-        <email>alan.harder@sun.com</email>
+        <email>mindless@dev.java.net</email>
       </developer>
     </developers>
 </project>
