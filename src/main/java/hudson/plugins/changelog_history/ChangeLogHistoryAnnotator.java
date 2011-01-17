@@ -52,7 +52,7 @@ public class ChangeLogHistoryAnnotator extends ChangeLogAnnotator {
         if (change == items[items.length-1]) {
             text.wrapBy("", "<div style=\"float:right\"><a href=\""
                 + req.getContextPath() + '/' + change.getParent().build.getUrl()
-                + "changelog-history/\">More change log history</a></div>");
+                + "changelog-history/\">" + Messages.MoreChangeLogHistory() + "</a></div>");
         }
     }
 }
