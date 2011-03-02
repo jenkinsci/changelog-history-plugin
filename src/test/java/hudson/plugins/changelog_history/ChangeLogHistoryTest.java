@@ -31,8 +31,8 @@ import org.jvnet.hudson.test.HudsonTestCase;
 import org.jvnet.hudson.test.recipes.LocalData;
 
 /**
- * Test interaction of changelog-history plugin with Hudson core.
- * @author Alan.Harder@sun.com
+ * Test interaction of changelog-history plugin with Jenkins core.
+ * @author Alan Harder
  */
 public class ChangeLogHistoryTest extends HudsonTestCase {
 

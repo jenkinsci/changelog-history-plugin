@@ -35,7 +35,7 @@ import org.apache.tools.ant.BuildException;
 
 /**
  * When builds are deleted, archive the changelog data in a later build.
- * @author Alan.Harder@sun.com
+ * @author Alan Harder
  */
 @Extension
 public class ChangeLogHistoryRunListener extends RunListener<AbstractBuild> {

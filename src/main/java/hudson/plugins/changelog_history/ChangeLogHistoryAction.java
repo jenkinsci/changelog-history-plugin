@@ -41,7 +41,7 @@ import org.kohsuke.stapler.StaplerResponse;
 
 /**
  * Action to display changelog-history data.
- * @author Alan.Harder@sun.com
+ * @author Alan Harder
  */
 public class ChangeLogHistoryAction implements Action {
     private final AbstractBuild<?,?> build;

@@ -33,7 +33,7 @@ import org.kohsuke.stapler.StaplerRequest;
 
 /**
  * Include changelog-history links when viewing changes
- * @author Alan.Harder@sun.com
+ * @author Alan Harder
  */
 @Extension
 public class ChangeLogHistoryAnnotator extends ChangeLogAnnotator {
