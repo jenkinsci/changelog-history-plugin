@@ -10,7 +10,7 @@
     <artifactId>changelog-history</artifactId>
     <packaging>hpi</packaging>
     <name>Change Log History</name>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3</version>
     <url>http://wiki.jenkins-ci.org/display/JENKINS/Change+Log+History+Plugin</url>
 
     <dependencies>
