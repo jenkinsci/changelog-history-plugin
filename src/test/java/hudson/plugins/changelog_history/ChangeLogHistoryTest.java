@@ -74,4 +74,15 @@ public class ChangeLogHistoryTest extends HudsonTestCase {
         link = page.getFirstAnchorByText("More change log history");
         assertNotNull("'More change log history' link should be present on changes page", link);
     }
+
+
+    @LocalData
+    public void testNotCopiedFromOldestBuild() throws Exception {
+        Job job = (Job)Hudson.getInstance().getItem("test-job");
+        assertNotNull("job missing.. @LocalData problem?", job);
+
+        job.getBuildByNumber(1).delete();
+
+        assertNull(job.getBuildByNumber(2).getAction(ChangeLogHistoryAction.class));
+    }
 }
