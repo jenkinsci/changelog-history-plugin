@@ -26,6 +26,7 @@ package hudson.plugins.changelog_history;
 import hudson.Extension;
 import hudson.MarkupText;
 import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.scm.ChangeLogAnnotator;
 import hudson.scm.ChangeLogSet;
 import org.kohsuke.stapler.Stapler;
@@ -39,7 +40,7 @@ import org.kohsuke.stapler.StaplerRequest;
 public class ChangeLogHistoryAnnotator extends ChangeLogAnnotator {
 
     @Override
-    public void annotate(AbstractBuild<?,?> build, ChangeLogSet.Entry change, MarkupText text) {
+    public void annotate(Run<?, ?> build, ChangeLogSet.Entry change, MarkupText text) {
         // Nothing to do if this build has no changelog history:
         if (build.getAction(ChangeLogHistoryAction.class) == null) return;
 
@@ -51,8 +52,8 @@ public class ChangeLogHistoryAnnotator extends ChangeLogAnnotator {
         Object[] items = change.getParent().getItems();
         if (change == items[items.length-1]) {
             text.wrapBy("", "<div style=\"float:right\"><a href=\""
-                + req.getContextPath() + '/' + change.getParent().build.getUrl()
-                + "changelog-history/\">" + Messages.MoreChangeLogHistory() + "</a></div>");
+                    + req.getContextPath() + '/' + change.getParent().getRun().getUrl()
+                    + "changelog-history/\">" + Messages.MoreChangeLogHistory() + "</a></div>");
         }
     }
 }

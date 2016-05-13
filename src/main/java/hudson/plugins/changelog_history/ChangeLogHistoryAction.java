@@ -79,7 +79,7 @@ public class ChangeLogHistoryAction implements Action {
         // Parse data files and add to list
         Map<Long,ChangeLogSet> result = new LinkedHashMap<Long,ChangeLogSet>(files.length*2);
         for (File file : files) {
-            ChangeLogSet changeLogSet = parser.parse(build, file);
+            ChangeLogSet changeLogSet = parser.parse(build, build.getProject().getScm().getEffectiveBrowser(), file);
             // Hack to avoid showing revision info (it's for this build, not the old builds)
             if (changeLogSet instanceof SubversionChangeLogSet) try {
                 Field f = SubversionChangeLogSet.class.getDeclaredField("revisionMap");
@@ -106,7 +106,7 @@ public class ChangeLogHistoryAction implements Action {
             return null;
 
         ChangeLogParser parser = build.getProject().getScm().createChangeLogParser();
-        req.setAttribute("changeSet", parser.parse(build, f));
+        req.setAttribute("changeSet", parser.parse(build, build.getProject().getScm().getEffectiveBrowser(), f));
         req.setAttribute("buildNumber", oldBuild);
         return this;
     }
