@@ -10,7 +10,7 @@
     <artifactId>changelog-history</artifactId>
     <packaging>hpi</packaging>
     <name>Change Log History</name>
-    <version>1.4</version>
+    <version>1.5-SNAPSHOT</version>
     <url>http://wiki.jenkins-ci.org/display/JENKINS/Change+Log+History+Plugin</url>
 
     <dependencies>
@@ -32,7 +32,7 @@
       <connection>scm:git:git://github.com/jenkinsci/changelog-history-plugin.git</connection>
       <developerConnection>scm:git:git@github.com:jenkinsci/changelog-history-plugin.git</developerConnection>
       <url>https://github.com/jenkinsci/changelog-history-plugin</url>
-      <tag>changelog-history-1.4</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <repositories>
