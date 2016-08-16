@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>subversion</artifactId>
-            <version>(1.25,]</version>
+            <version>2.6</version>
         </dependency>
     </dependencies>
 
@@ -25,6 +25,10 @@
       <developer>
         <id>mindless</id>
         <name>Alan Harder</name>
+      </developer>
+      <developer>
+        <id>escoem</id>
+        <name>Emilio Escobar</name>
       </developer>
     </developers>
 
