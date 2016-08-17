@@ -69,10 +69,13 @@ public class ChangeLogHistoryRunListener extends RunListener<AbstractBuild> {
         }
         // Copy changelog-history in this build, if any
         File changeHistory = new File(build.getRootDir(), "changelog-history");
-        if (changeHistory.isDirectory()) {
-            checkDir(baseDir);
-            for (File file : changeHistory.listFiles()) {
-                Util.copyFile(file, new File(baseDir, file.getName()));
+        if (changeHistory != null && changeHistory.isDirectory()) {
+            File[] files = changeHistory.listFiles();
+            if (files != null) {
+                checkDir(baseDir);
+                for (File file : files) {
+                    Util.copyFile(file, new File(baseDir, file.getName()));
+                }
             }
             copied = true;
         }

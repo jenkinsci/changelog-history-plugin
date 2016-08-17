@@ -23,6 +23,7 @@
  */
 package hudson.plugins.changelog_history;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.model.AbstractBuild;
 import hudson.model.Action;
 import hudson.scm.ChangeLogParser;
@@ -58,6 +59,7 @@ public class ChangeLogHistoryAction implements Action {
     /**
      * Get all changelog detail; used by index.jelly
      */
+    @SuppressFBWarnings(value = "REC_CATCH_EXCEPTION", justification = "legacy code")
     public Map<Long,ChangeLogSet> getChangeLogSets() throws Exception {
         ChangeLogParser parser = build.getProject().getScm().createChangeLogParser();
         File baseDir = new File(build.getRootDir(), "changelog-history");
@@ -68,9 +70,11 @@ public class ChangeLogHistoryAction implements Action {
                 return pathname.isFile() && pathname.getName().matches("\\d+\\.xml");
             }
         });
-
+        if (files == null) {
+            throw new IllegalStateException("Null files not allowed here.");
+        }
         // Descending sort by build number
-        Arrays.sort(files, new Comparator<File>() {
+        Arrays.sort(files , new Comparator<File>() {
             public int compare(File f1, File f2) {
                 return Long.signum(getBuildNumber(f2) - getBuildNumber(f1));
             }
@@ -81,11 +85,15 @@ public class ChangeLogHistoryAction implements Action {
         for (File file : files) {
             ChangeLogSet changeLogSet = parser.parse(build, build.getProject().getScm().getEffectiveBrowser(), file);
             // Hack to avoid showing revision info (it's for this build, not the old builds)
-            if (changeLogSet instanceof SubversionChangeLogSet) try {
-                Field f = SubversionChangeLogSet.class.getDeclaredField("revisionMap");
-                f.setAccessible(true);
-                f.set(changeLogSet, new HashMap(0));
-            } catch (Exception ex) { /* ignore */ }
+            if (changeLogSet instanceof SubversionChangeLogSet) {
+                try {
+                    Field f = SubversionChangeLogSet.class.getDeclaredField("revisionMap");
+                    f.setAccessible(true);
+                    f.set(changeLogSet, new HashMap(0));
+                } catch (Exception ex) {
+                    /* ignore */
+                }
+            }
             result.put(getBuildNumber(file), changeLogSet);
         }
         return result;

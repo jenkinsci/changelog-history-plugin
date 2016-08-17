@@ -51,7 +51,7 @@ public class ChangeLogHistoryTest extends HudsonTestCase {
         // Now access the views for changelog-history display
         WebClient wc = new WebClient();
         HtmlPage page = wc.goTo("job/test-job/6/");
-        HtmlAnchor link = page.getFirstAnchorByText("Change Log History");
+        HtmlAnchor link = page.getAnchorByText("Change Log History");
         assertNotNull("changelog-history link", link);
         page = (HtmlPage)link.click();
         String mainContent = page.getElementById("main-panel").asText();
@@ -71,7 +71,7 @@ public class ChangeLogHistoryTest extends HudsonTestCase {
 
         // Verify "More change log history" link on Recent Changes page
         page = wc.goTo("job/test-job/changes");
-        link = page.getFirstAnchorByText("More change log history");
+        link = page.getAnchorByText("More change log history");
         assertNotNull("'More change log history' link should be present on changes page", link);
     }
 }
