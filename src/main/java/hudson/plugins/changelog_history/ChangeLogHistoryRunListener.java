@@ -46,6 +46,11 @@ public class ChangeLogHistoryRunListener extends RunListener<AbstractBuild> {
 
     @Override
     public void onDeleted(AbstractBuild build) {
+        if (build.getPreviousBuild() == null) {
+            // don't bother accumulating changelog entries on the oldest builds
+            return;
+        }
+
         try {
             copyChangeLogs(build);
         } catch (Exception ex) {
